@@ -1,0 +1,67 @@
+* {
+    outline: none;
+}
+
+body {
+    background-color: #222;
+}
+
+#clearBttn {
+    margin-left: 10px;
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid transparent;
+}
+
+#clearBttn:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+#citySelector {
+    width: 100%;
+}
+#cityDoneContainer {
+    width: 200px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.outer-row {
+    display: flex;
+    margin: 0 auto;
+}
+
+.row {
+    margin: 10px auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.loadStatus {
+    color: #fff;
+    margin-left: 10px;
+}
+
+.defaultSelect {
+    width: 200px;
+    height: 40px;
+    border-radius: 50px;
+    border: 1px solid #222;
+}
+
+.defaultSelect:hover {
+    cursor: pointer;
+}

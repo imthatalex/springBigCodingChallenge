@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+        <title>Spring Big Coding Challenge</title>
+
+        <link rel="stylesheet" type="text/css" href="min.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="select">
+            <div class="container">
+
+
+                <div class="outer-row">
+
+
+                    <div class="col">
+
+
+                        <div class="row">
+                            <multiple-select
+                                class="fixed-width"
+                                placeholder="Please Select a Country"
+                                v-model="selectedCountryId">
+                                <option
+                                    v-for="country in countries"
+                                    v-bind:value="country.id">{{country.name}}</option>
+                            </multiple-select>
+                        </div>
+
+                        <div class="row">
+                            <multiple-select
+                                class="fixed-width"
+                                placeholder="Please Select a State"
+                                v-model="selectedStateId">
+                                <option
+                                    v-for="state in states"
+                                    v-bind:value="state.id">{{state.name}}</option>
+                            </multiple-select>
+                        </div>
+
+                        <div class="row">
+                            <multiple-select
+                                class="fixed-width"
+                                placeholder="Please Select a City"
+                                multiple
+                                v-model="selectedCityId">
+                                <option
+                                    v-for="city in cities"
+                                    v-bind:value="city.id">{{city.name}}</option>
+                            </multiple-select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <button id="clearBttn" @click="clearValues()">Clear</button>
+                        <h3 class="loadStatus" v-if="selectedCountryId &&
+                            states.length == 0">Loading..</h3>
+
+                        <h3 class="loadStatus" v-if="selectedCountryId &&
+                            states.length != 0">Done!</h3>
+
+                        <h3 id="loadingCityIcon" class="loadStatus"
+                            v-if="selectedStateId &&
+                            cities.length == 0">Loading..</h3>
+
+                        <h3 id="noCitiesText" class="loadStatus"></h3>
+
+                        <h3 class="loadStatus" v-if="selectedStateId &&
+                            cities.length != 0">Done!</h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script
+            src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+        <script
+            src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select-vue.min.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
