@@ -25,7 +25,18 @@ const vm = new Vue({
                 "Accept": "application/json"
             }
         })
+            .then(response => examineResponse(response))
             .then(response => this.displayCountries(response))
+
+
+            function examineResponse(response){
+                if(response.status == 500){
+                    this.generateToken();
+                }
+                else {
+                    return response;
+                }
+            }
         },
 
         watch: {
