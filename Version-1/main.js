@@ -1,6 +1,3 @@
-const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJoZXJuYW5kZXphbGV4NjM5OEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJON2dHRl91TUJoRTBTb0E1U3BXUk1UV1V3dmkyM1dyZ2NYYzlRXzFWWWxTUjgwYjJnd2lYdFVHc0Q1MFBpb2Y4X3RBIn0sImV4cCI6MTYzMjk2NjU1NH0.QeHFqha81RjXt3H-nodQqhyS6t5ru7ipaoGICzFqa_M';
-
-
 const selectComponent = Vue.component('select-component', {
     template: `#selectComponent`
 })
@@ -8,6 +5,7 @@ const selectComponent = Vue.component('select-component', {
 const vm = new Vue({
     el: '#app',
     data: {
+        authToken: '',
         picked: '',
         selectedCountry: '',
         selectedState: '',
@@ -17,27 +15,21 @@ const vm = new Vue({
         cities: []
     },
 
-    beforeCreate: function(){
-        const getCountriesUrl = 'https://www.universal-tutorial.com/api/countries/';
-        axios.get(getCountriesUrl, {
-            headers: {
-                "Authorization": "Bearer " + authToken,
-                "Accept": "application/json"
-            }
-        })
-            .then(response => examineResponse(response))
-            .then(response => this.displayCountries(response))
-
-
-            function examineResponse(response){
-                if(response.status == 500){
-                    this.generateToken();
+    beforeCreate: function(){  
+            axios.get("https://www.universal-tutorial.com/api/getaccesstoken", {
+                headers: {
+                    "Accept": "application/json",
+                    "api-token": "LAuYuSfzz1cLlOW3cdOaXqF_HGmtPsByRv9zG1dvDWqKZquaTNHtV8Fm8b5GR2ZZKXc",
+                    "user-email": "hernandezalex2140@gmail.com"
                 }
-                else {
-                    return response;
-                }
-            }
-        },
+            })
+            .then(response => {
+                let data = response.data;
+                let authToken = data['auth_token'];
+                this.authToken = authToken;
+                this.displayCountries(authToken);
+            });
+    },
 
         watch: {
             selectedCountry: function(selectedCountry){
@@ -54,7 +46,7 @@ const vm = new Vue({
                     const getStatesUrl = 'https://www.universal-tutorial.com/api/states/' + selectedCountry;
                     axios.get(getStatesUrl, {
                         headers: {
-                            "Authorization": "Bearer " + authToken,
+                            "Authorization": "Bearer " + this.authToken,
                             "Accept": "application/json"
                         }
                     })
@@ -68,12 +60,12 @@ const vm = new Vue({
                 const getCitiesUrl = 'https://www.universal-tutorial.com/api/cities/' + selectedState;
                 axios.get(getCitiesUrl, {
                     headers: {
-                        "Authorization": "Bearer " + authToken,
+                        "Authorization": "Bearer " + this.authToken,
                         "Accept": "application/json"
                     }
-                })
+                }, {validateStatus: () => true})
                     .then(response => this.examineResponse(response))
-                    .then(response => this.displayCities(response));
+                    .then(response => this.displayCities(response))
             }
         },
 
@@ -81,6 +73,9 @@ const vm = new Vue({
         methods: {
 
             examineResponse(response){
+
+                console.log(response.status);
+
                 const loadingCityIcon = document.getElementById('loadingCityIcon');
                 const noCityText = document.getElementById('noCitiesText');
                 if(response.data == 0){
@@ -95,11 +90,23 @@ const vm = new Vue({
                 }
             },
 
-            displayCountries(response) {
-                const data = response.data;
-                for (let i = 0; i < data.length; i++) {
-                    this.countries.push(data[i]['country_name'])
-                }
+            displayCountries(authToken) {
+
+                const getCountriesUrl = 'https://www.universal-tutorial.com/api/countries/';
+                axios.get(getCountriesUrl, {
+                    headers: {
+                        "Authorization": "Bearer " + authToken,
+                        "Accept": "application/json"
+                    }
+                })
+                .then(response => {
+                    const data = response.data;
+                    for (let i = 0; i < data.length; i++) {
+                        this.countries.push(data[i]['country_name'])
+                    }
+                })
+
+                
             },
 
             displayStates(response){
