@@ -27,6 +27,7 @@
 
 
 
+<<<<<<< HEAD
 <h3> Copy/Paste Template </h3>
 ```
   <div id="app">
@@ -99,3 +100,13 @@
   <li><a href="">Universal REST API for Countries, States & Cities</a></li>
   <li><a href="">Multiple Select Vue Dropdown Component </a></li>
  </ol>
+=======
+<span>View <a target="_blank" href="https://imthatalex-vue-dropdown-v1.netlify.app/">Here</a></span>
+
+```
+  funciton test() {
+    console.log('hello world');
+  } 
+
+```
+>>>>>>> eb1a9a3f724f2440611e85dff0b62b215606c4e2
