@@ -10,6 +10,7 @@
 
 
 <p> Add the following Scripts to your HEAD tag </p>
+  
 ```
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 ```
@@ -30,6 +31,8 @@
 
 
 <h3> Copy/Paste Template </h3>
+  
+  
 ```
   <div id="app">
       <div class="container">
@@ -83,9 +86,8 @@
           </div>
       </div>
   </div>
+  ```
   
-  
-```
 <h3> Copy/Paste JS, Add API Token & E-Mail </h3>
 <p> API Token can be retrieved <a href=""> here </a> </p>
 
@@ -97,8 +99,8 @@
   <li><a href="">Universal REST API for Countries, States & Cities</a></li>
   <li><a href="">Multiple Select Vue Dropdown Component </a></li>
  </ol>
-=======
 <span>View <a target="_blank" href="https://imthatalex-vue-dropdown-v1.netlify.app/">Here</a></span>
+  
 
 ```
   funciton test() {
