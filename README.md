@@ -8,13 +8,13 @@
 
 <p> Add the following CDN to your HEAD tag </p>
   
-```
+```html
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 ```
 
 <p> Add the following CDNs above your ending BODY tag </p>
   
-```
+```html
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
   <script
@@ -25,7 +25,7 @@
 
 <h3> Copy/Paste Template </h3>  
   
-```
+```html
   <div id="app">
       <div class="container">
           <div class="outer-row">
@@ -82,7 +82,7 @@
   
 <h3> Copy/Paste JS </h3>
   
-```
+```javascript
   new Vue({
     el: '#app',
     components: {
