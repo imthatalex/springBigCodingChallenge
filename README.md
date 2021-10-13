@@ -4,7 +4,7 @@
 <p> Vue Dropdown SFC, Enabling User to Select a Location </p>
 
 <h2> Getting Started </h2>
-<p> Download CSS from the <a href="https://github.com/imthatalex/vue-dropdown-component/tree/master/Styles">Styles</a> Directory </p>
+<p> Import CSS from the <a href="https://github.com/imthatalex/vue-dropdown-component/tree/master/Styles">Styles</a> Directory </p>
 
 <p> Add the following CDN to your HEAD tag </p>
   
