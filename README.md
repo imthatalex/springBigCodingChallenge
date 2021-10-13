@@ -4,15 +4,15 @@
 <p> Reusable Vue Dropdown Component, Enabling User to Select a Location </p>
 
 <h2> Getting Started </h2>
-<p> Import/Download CSS from the Styles Directory </p>
+<p> Download CSS from the <a href="https://github.com/imthatalex/vue-dropdown-component/tree/master/Styles">Styles</a> Directory </p>
 
-<p> Add the following Scripts to your HEAD tag </p>
+<p> Add the following CDN to your HEAD tag </p>
   
 ```
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 ```
 
-<p> Add the following Scripts above your ending BODY tag </p>
+<p> Add the following CDNs above your ending BODY tag </p>
   
 ```
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
