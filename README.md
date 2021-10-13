@@ -16,6 +16,7 @@
 
 
 <p> Add the following Scripts above your ending BODY tag </p>
+  
 ```
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
@@ -27,7 +28,7 @@
 
 
 
-<<<<<<< HEAD
+
 <h3> Copy/Paste Template </h3>
 ```
   <div id="app">
@@ -82,15 +83,11 @@
           </div>
       </div>
   </div>
+  
+  
 ```
-
 <h3> Copy/Paste JS, Add API Token & E-Mail </h3>
 <p> API Token can be retrieved <a href=""> here </a> </p>
-```
-
-
-```
-
 
 
  <h2> Resources </h2>
@@ -109,4 +106,3 @@
   } 
 
 ```
->>>>>>> eb1a9a3f724f2440611e85dff0b62b215606c4e2
