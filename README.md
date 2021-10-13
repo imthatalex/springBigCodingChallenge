@@ -218,11 +218,11 @@
 ```
   
 <h3> Add API Token & E-Mail </h3>                                          
-<p> API Token can be retrieved <a href=""> Here </a> </p>
+<p> API Token can be retrieved <a href="https://www.universal-tutorial.com/rest-apis/free-rest-api-for-country-state-city"> Here </a> </p>
 
 <h2> Resources </h2>
  <ul>
-   <li><a href="">Axios</a></li>
-  <li><a href="">Universal REST API for Countries, States & Cities</a></li>
-  <li><a href="">Multiple Select Vue Dropdown Component </a></li>
+   <li><a href="https://axios-http.com/">Axios</a></li>
+  <li><a href="https://www.universal-tutorial.com/rest-apis/free-rest-api-for-country-state-city">Universal REST API for Countries, States & Cities</a></li>
+  <li><a href="https://multiple-select.wenzhixin.net.cn/en/">Multiple Select Vue Dropdown Component </a></li>
  </ul>
