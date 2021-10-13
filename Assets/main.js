@@ -1,12 +1,10 @@
-const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJoZXJuYW5kZXphbGV4NjM5OEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJON2dHRl91TUJoRTBTb0E1U3BXUk1UV1V3dmkyM1dyZ2NYYzlRXzFWWWxTUjgwYjJnd2lYdFVHc0Q1MFBpb2Y4X3RBIn0sImV4cCI6MTYzMjk2NjU1NH0.QeHFqha81RjXt3H-nodQqhyS6t5ru7ipaoGICzFqa_M';
-
-
-const vm = new Vue({
-    el: '#select',
+new Vue({
+    el: '#app',
     components: {
         'MultipleSelect': MultipleSelect
     },
     data: {
+        authToken: '',
         selectedCountryId: '',
         selectedCountryName: '',
         selectedStateId: '',
@@ -17,58 +15,60 @@ const vm = new Vue({
         states: [],
         cities: []
     },
-
     beforeCreate: function () {
-        const getCountriesUrl = 'https://www.universal-tutorial.com/api/countries/';
-        axios.get(getCountriesUrl, {
+        // generate auth token
+        axios.get("https://www.universal-tutorial.com/api/getaccesstoken", {
             headers: {
-                "Authorization": "Bearer " + authToken,
-                "Accept": "application/json"
+                // add api token and e-mail
+                "Accept": "application/json",
+                "api-token": "",
+                "user-email": ""
             }
         })
-            .then(response => this.displayCountries(response))
+        // set authToken, render list of countries
+        .then(response => {
+            let data = response.data;
+            let authToken = data['auth_token'];
+            this.authToken = authToken;
+            this.displayCountries(authToken);
+        });
     },
-
     watch: {
         selectedCountryId: function(selectedCountryId){
+            // clear data to avoid duplicates
             this.states = [];
             this.cities = [];
+            const noCitiesText = document.getElementById('noCitiesText');
+            noCitiesText.innerHTML = '';
+            // set selected country name
             this.selectedCountryName = this.countries[selectedCountryId]['name'];
-
-            const noCityText = document.getElementById('noCitiesText');
-            noCityText.innerHTML = '';
-            
+            // render list of states
             const getStatesUrl = 'https://www.universal-tutorial.com/api/states/' + this.selectedCountryName;
             axios.get(getStatesUrl, {
                 headers: {
-                    "Authorization": "Bearer " + authToken,
+                    "Authorization": "Bearer " + this.authToken,
                     "Accept": "application/json"
                 }
             })
-                .then(response => this.displayStates(response));
+            .then(response => this.displayStates(response));
         },
-
         selectedStateId: function (selectedStateId) {
             this.cities = [];
-            this.selectedStateName = this.states[selectedStateId]['name'];
-
             const noCityText = document.getElementById('noCitiesText');
             noCityText.innerHTML = '';
-
+            this.selectedStateName = this.states[selectedStateId]['name'];
             const getCitiesUrl = 'https://www.universal-tutorial.com/api/cities/' + this.selectedStateName;
             axios.get(getCitiesUrl, {
                 headers: {
-                    "Authorization": "Bearer " + authToken,
+                    "Authorization": "Bearer " + this.authToken,
                     "Accept": "application/json"
                 }
             })
-                .then(response => this.examineResponse(response))
-                .then(response => this.displayCities(response));
+            .then(response => this.examineResponse(response))
+            .then(response => this.displayCities(response));
         }
     },
-
     methods: {
-
         examineResponse(response) {
             const loadingCityIcon = document.getElementById('loadingCityIcon');
             const noCityText = document.getElementById('noCitiesText');
@@ -83,19 +83,28 @@ const vm = new Vue({
                 return response;
             }
         },
-
-        displayCountries(response) {
-            const data = response.data;
-            for (let i = 0; i < data.length; i++) {
-                this.countries.push({
-                    id: i, name: data[i]['country_name']
-                })
-            }
+        displayCountries(authToken) {
+            // render list of countries
+            const getCountriesUrl = 'https://www.universal-tutorial.com/api/countries/';
+            axios.get(getCountriesUrl, {
+                headers: {
+                    "Authorization": "Bearer " + authToken,
+                    "Accept": "application/json"
+                }
+            })
+            // populate list of countries
+            .then(response => {
+                const data = response.data;
+                for (let i = 0; i < data.length; i++) {
+                    this.countries.push({
+                        id: i, name: data[i]['country_name']
+                    })
+                }
+            })
         },
-
         displayStates(response){
             this.selectedStateId = '';
-
+            // populate list of states
             const data = response.data;
             for (let i = 0; i < data.length; i++) {
                 this.states.push({
@@ -103,10 +112,9 @@ const vm = new Vue({
                 })
             }
         },
-
         displayCities(response){
             this.selectedCityId = '';
-
+            // populate list of countries
             const data = response.data;
             for (let i = 0; i < data.length; i++) {
                 this.cities.push({
@@ -114,13 +122,11 @@ const vm = new Vue({
                 })
             }
         },
-
         clearValues(){
             this.selectedCountryId = '';
             this.selectedStateId = '';
             const noCityText = document.getElementById('noCitiesText');
             noCityText.innerHTML = '';
-
         }
     }
 })
