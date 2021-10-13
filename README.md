@@ -29,3 +29,10 @@
 
 
 <span>View <a target="_blank" href="https://imthatalex-vue-dropdown-v1.netlify.app/">Here</a></span>
+
+```
+  funciton test() {
+    console.log('hello world');
+  } 
+
+```
