@@ -1,7 +1,7 @@
 <h1> Select Location Dropdown Component <h1>
 
 <h2> Usage </h2>
-<p> Reusable Vue Dropdown Component, Enabling User to Select a Location </p>
+<p> SFC Vue Dropdown Component, Enabling User to Select a Location </p>
 
 <h2> Getting Started </h2>
 <p> Download CSS from the <a href="https://github.com/imthatalex/vue-dropdown-component/tree/master/Styles">Styles</a> Directory </p>
